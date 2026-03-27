@@ -41,7 +41,7 @@
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         {%- if show_image == true and article.image -%}
-          <div class="article-card__image-wrapper card__media">
+          <div class="article-card__image-wrapper card__media card__media_development">
             <div
               class="article-card__image media media--hover-effect"
               {% if section.settings.media_height == 'adapt' %}
