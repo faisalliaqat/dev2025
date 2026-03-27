@@ -1,0 +1,598 @@
+{% if product.selling_plan_groups != blank %}
+    {% assign selling_plan_group_data = product.selling_plan_groups[0] %}
+    {% for selling_plan_group in product.selling_plan_groups %}
+        {% if selling_plan_group.id == product.selected_or_first_available_variant.selling_plan_allocations[0].selling_plan_group_id %}
+            {% assign selling_plan_group_data = selling_plan_group %}
+        {% endif %}
+    {% endfor %}
+    
+<div class="subscription_widget_01">
+     
+
+    <input 
+        type="radio" 
+        name="subscription_widget_01" 
+        id="subscription_widget_01" 
+        value="{{ selling_plan_group_data.selling_plans[0].id }}" 
+        data-compare-price="{{ product.selected_or_first_available_variant.selling_plan_allocations[0].compare_at_price | money }}"
+        data-price="{{ product.selected_or_first_available_variant.selling_plan_allocations[0].price | money }}"
+        data-compare-price-cart="{{ product.selected_or_first_available_variant.selling_plan_allocations[0].compare_at_price }}"
+        data-price-cart="{{ product.selected_or_first_available_variant.selling_plan_allocations[0].price }}"
+        checked
+    >
+    <label for="subscription_widget_01" class="sw_01_subscription subscription_base">
+        <div class="seller_badge">Bestseller</div>
+       <div class="subscription_head">
+        <div class="subscription_head_inner">
+            <div class="subscription_icon">
+                <svg class="check_mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M18.3327 10.0001C18.3327 5.39771 14.6017 1.66675 9.99935 1.66675C5.39697 1.66675 1.66602 5.39771 1.66602 10.0001C1.66602 14.6024 5.39697 18.3334 9.99935 18.3334C14.6017 18.3334 18.3327 14.6024 18.3327 10.0001Z" fill="#78A97C" stroke="white" stroke-width="0.833333"/>
+                <path d="M6.66602 10L9.16602 12.5L13.3327 7.5" stroke="white" stroke-width="0.833333" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="uncheck_mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M18.3327 10.0001C18.3327 5.39771 14.6017 1.66675 9.99935 1.66675C5.39697 1.66675 1.66602 5.39771 1.66602 10.0001C1.66602 14.6024 5.39697 18.3334 9.99935 18.3334C14.6017 18.3334 18.3327 14.6024 18.3327 10.0001Z" stroke="#272727" stroke-opacity="0.1" stroke-width="0.833333"/>
+                </svg>
+            </div>
+            {% assign compare_at_price_plan = product.selected_or_first_available_variant.selling_plan_allocations[0].compare_at_price %}
+            {% assign price_plan = product.selected_or_first_available_variant.selling_plan_allocations[0].price %}
+           
+            <div class="subscription_title">
+                <div class="sub_title_discount">
+                    <span class="sub__title">Deliver Every Month</span>
+                     {% if compare_at_price_plan and price_plan  and compare_at_price_plan > price_plan %}
+                        {% assign discount_plan = compare_at_price_plan | minus: price_plan %}
+                        {% assign percent_off_plan = discount_plan | times: 100 | divided_by: compare_at_price_plan %}
+                        <span class="sub__discount">SAVE {{ percent_off_plan | round }}%</span>
+                    {% endif %}
+                    
+                </div>
+                <div class="sub_text">{{selling_plan_group_data.selling_plans[0].name}}</div>
+            </div>
+        </div>
+        <div class="subscription_price">
+            <div class="sub_price">
+                <span class="sub_price_sale">{{ product.selected_or_first_available_variant.selling_plan_allocations[0].price | money }}</span>
+                <span class="sub_price_regular">{{ product.selected_or_first_available_variant.selling_plan_allocations[0].compare_at_price | money }}</span>
+            </div>
+            {% comment %} <div class="sub_price_per_design">
+                $3 / Design
+            </div> {% endcomment %}
+        </div>
+       </div> 
+       <div class="subscription_body">
+        <div class="subscription_text_list">
+            <div class="subscription_text_item">
+                <span class="tick_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16.6673 5L7.50065 14.1667L3.33398 10" stroke="#272727" stroke-width="0.833333" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="tick_text">Seasonal colors selected by fashion experts</span>
+            </div>
+            <div class="subscription_text_item">
+                <span class="tick_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16.6673 5L7.50065 14.1667L3.33398 10" stroke="#272727" stroke-width="0.833333" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="tick_text">Free Welcome Kit: 2-in-1 File & Remover Oil</span>
+            </div>
+            <div class="subscription_text_item">
+                <span class="tick_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16.6673 5L7.50065 14.1667L3.33398 10" stroke="#272727" stroke-width="0.833333" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="tick_text">Pause or Cancel Anytime</span>
+            </div>
+            <div class="subscription_text_item">
+                <span class="tick_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16.6673 5L7.50065 14.1667L3.33398 10" stroke="#272727" stroke-width="0.833333" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="tick_text">30 Days Money-Back-Guarantee + Free Shipping</span>
+            </div>
+        </div>
+       </div>
+    </label>
+
+     <input 
+        type="radio" 
+        name="subscription_widget_01" 
+        id="subscription_widget_02" 
+        value="{{ selling_plan_group_data.selling_plans[1].id }}" 
+        data-compare-price="{{ product.selected_or_first_available_variant.selling_plan_allocations[1].compare_at_price | money }}"
+        data-price="{{ product.selected_or_first_available_variant.selling_plan_allocations[1].price | money }}"
+        data-compare-price-cart="{{ product.selected_or_first_available_variant.selling_plan_allocations[1].compare_at_price }}"
+        data-price-cart="{{ product.selected_or_first_available_variant.selling_plan_allocations[1].price }}"
+        
+    >
+    <label for="subscription_widget_02" class="sw_01_subscription subscription_base subscription_base_top">
+        <div class="seller_badge">Bestseller</div>
+       <div class="subscription_head">
+        <div class="subscription_head_inner">
+            <div class="subscription_icon">
+                <svg class="check_mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M18.3327 10.0001C18.3327 5.39771 14.6017 1.66675 9.99935 1.66675C5.39697 1.66675 1.66602 5.39771 1.66602 10.0001C1.66602 14.6024 5.39697 18.3334 9.99935 18.3334C14.6017 18.3334 18.3327 14.6024 18.3327 10.0001Z" fill="#78A97C" stroke="white" stroke-width="0.833333"/>
+                <path d="M6.66602 10L9.16602 12.5L13.3327 7.5" stroke="white" stroke-width="0.833333" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="uncheck_mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M18.3327 10.0001C18.3327 5.39771 14.6017 1.66675 9.99935 1.66675C5.39697 1.66675 1.66602 5.39771 1.66602 10.0001C1.66602 14.6024 5.39697 18.3334 9.99935 18.3334C14.6017 18.3334 18.3327 14.6024 18.3327 10.0001Z" stroke="#272727" stroke-opacity="0.1" stroke-width="0.833333"/>
+                </svg>
+            </div>
+            {% assign compare_at_price_plan = product.selected_or_first_available_variant.selling_plan_allocations[1].compare_at_price %}
+            {% assign price_plan = product.selected_or_first_available_variant.selling_plan_allocations[1].price %}
+           
+            <div class="subscription_title">
+                <div class="sub_title_discount">
+                    <span class="sub__title">Deliver Every 2 Month</span>
+                     {% if compare_at_price_plan and price_plan  and compare_at_price_plan > price_plan %}
+                        {% assign discount_plan = compare_at_price_plan | minus: price_plan %}
+                        {% assign percent_off_plan = discount_plan | times: 100 | divided_by: compare_at_price_plan %}
+                        <span class="sub__discount">SAVE {{ percent_off_plan | round }}%</span>
+                    {% endif %}
+                    
+                </div>
+                <div class="sub_text">{{selling_plan_group_data.selling_plans[1].name}}</div>
+            </div>
+        </div>
+        <div class="subscription_price">
+            <div class="sub_price">
+                <span class="sub_price_sale">{{ product.selected_or_first_available_variant.selling_plan_allocations[1].price | money }}</span>
+                <span class="sub_price_regular">{{ product.selected_or_first_available_variant.selling_plan_allocations[1].compare_at_price | money }}</span>
+            </div>
+            {% comment %} <div class="sub_price_per_design">
+                $3 / Design
+            </div> {% endcomment %}
+        </div>
+       </div> 
+       <div class="subscription_body">
+        <div class="subscription_text_list">
+            <div class="subscription_text_item">
+                <span class="tick_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16.6673 5L7.50065 14.1667L3.33398 10" stroke="#272727" stroke-width="0.833333" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="tick_text">Seasonal colors selected by fashion experts</span>
+            </div>
+            <div class="subscription_text_item">
+                <span class="tick_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16.6673 5L7.50065 14.1667L3.33398 10" stroke="#272727" stroke-width="0.833333" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="tick_text">Free Welcome Kit: 2-in-1 File & Remover Oil</span>
+            </div>
+            <div class="subscription_text_item">
+                <span class="tick_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16.6673 5L7.50065 14.1667L3.33398 10" stroke="#272727" stroke-width="0.833333" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="tick_text">Pause or Cancel Anytime</span>
+            </div>
+            <div class="subscription_text_item">
+                <span class="tick_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16.6673 5L7.50065 14.1667L3.33398 10" stroke="#272727" stroke-width="0.833333" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="tick_text">30 Days Money-Back-Guarantee + Free Shipping</span>
+            </div>
+        </div>
+       </div>
+    </label>
+
+     <input 
+        type="radio" 
+        name="subscription_widget_01" 
+        id="subscription_widget_03" 
+        value="{{ selling_plan_group_data.selling_plans[2].id }}" 
+        data-compare-price="{{ product.selected_or_first_available_variant.selling_plan_allocations[2].compare_at_price | money }}"
+        data-price="{{ product.selected_or_first_available_variant.selling_plan_allocations[2].price | money }}"
+        data-compare-price-cart="{{ product.selected_or_first_available_variant.selling_plan_allocations[2].compare_at_price }}"
+        data-price-cart="{{ product.selected_or_first_available_variant.selling_plan_allocations[2].price }}"
+        
+    >
+    <label for="subscription_widget_03" class="sw_01_subscription subscription_base subscription_base_top">
+        <div class="seller_badge">Bestseller</div>
+       <div class="subscription_head">
+        <div class="subscription_head_inner">
+            <div class="subscription_icon">
+                <svg class="check_mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M18.3327 10.0001C18.3327 5.39771 14.6017 1.66675 9.99935 1.66675C5.39697 1.66675 1.66602 5.39771 1.66602 10.0001C1.66602 14.6024 5.39697 18.3334 9.99935 18.3334C14.6017 18.3334 18.3327 14.6024 18.3327 10.0001Z" fill="#78A97C" stroke="white" stroke-width="0.833333"/>
+                <path d="M6.66602 10L9.16602 12.5L13.3327 7.5" stroke="white" stroke-width="0.833333" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="uncheck_mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M18.3327 10.0001C18.3327 5.39771 14.6017 1.66675 9.99935 1.66675C5.39697 1.66675 1.66602 5.39771 1.66602 10.0001C1.66602 14.6024 5.39697 18.3334 9.99935 18.3334C14.6017 18.3334 18.3327 14.6024 18.3327 10.0001Z" stroke="#272727" stroke-opacity="0.1" stroke-width="0.833333"/>
+                </svg>
+            </div>
+            {% assign compare_at_price_plan = product.selected_or_first_available_variant.selling_plan_allocations[2].compare_at_price %}
+            {% assign price_plan = product.selected_or_first_available_variant.selling_plan_allocations[2].price %}
+           
+            <div class="subscription_title">
+                <div class="sub_title_discount">
+                    <span class="sub__title">Deliver Every 3 Month</span>
+                     {% if compare_at_price_plan and price_plan  and compare_at_price_plan > price_plan %}
+                        {% assign discount_plan = compare_at_price_plan | minus: price_plan %}
+                        {% assign percent_off_plan = discount_plan | times: 100 | divided_by: compare_at_price_plan %}
+                        <span class="sub__discount">SAVE {{ percent_off_plan | round }}%</span>
+                    {% endif %}
+                    
+                </div>
+                <div class="sub_text">{{selling_plan_group_data.selling_plans[2].name}}</div>
+            </div>
+        </div>
+        <div class="subscription_price">
+            <div class="sub_price">
+                <span class="sub_price_sale">{{ product.selected_or_first_available_variant.selling_plan_allocations[2].price | money }}</span>
+                <span class="sub_price_regular">{{ product.selected_or_first_available_variant.selling_plan_allocations[2].compare_at_price | money }}</span>
+            </div>
+            {% comment %} <div class="sub_price_per_design">
+                $3 / Design
+            </div> {% endcomment %}
+        </div>
+       </div> 
+       <div class="subscription_body">
+        <div class="subscription_text_list">
+            <div class="subscription_text_item">
+                <span class="tick_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16.6673 5L7.50065 14.1667L3.33398 10" stroke="#272727" stroke-width="0.833333" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="tick_text">Seasonal colors selected by fashion experts</span>
+            </div>
+            <div class="subscription_text_item">
+                <span class="tick_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16.6673 5L7.50065 14.1667L3.33398 10" stroke="#272727" stroke-width="0.833333" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="tick_text">Free Welcome Kit: 2-in-1 File & Remover Oil</span>
+            </div>
+            <div class="subscription_text_item">
+                <span class="tick_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16.6673 5L7.50065 14.1667L3.33398 10" stroke="#272727" stroke-width="0.833333" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="tick_text">Pause or Cancel Anytime</span>
+            </div>
+            <div class="subscription_text_item">
+                <span class="tick_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16.6673 5L7.50065 14.1667L3.33398 10" stroke="#272727" stroke-width="0.833333" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="tick_text">30 Days Money-Back-Guarantee + Free Shipping</span>
+            </div>
+        </div>
+       </div>
+    </label>
+    
+    <div class="subscription_or"><span>OR</span></div>
+    <input 
+        type="radio" 
+        name="subscription_widget_01" 
+        id="one_time_widget"
+        value="one_time"
+        data-compare-price="{{ product.selected_or_first_available_variant.compare_at_price | money }}"
+        data-price="{{ product.selected_or_first_available_variant.price | money }}"
+        data-compare-price-cart="{{ product.selected_or_first_available_variant.price }}"
+        data-price-cart="{{ product.selected_or_first_available_variant.price }}"
+    >
+    <label for="one_time_widget" class="sw_01_subscription one_time_widget">
+        <div class="subscription_head">
+            <div class="subscription_head_inner">
+                <div class="subscription_icon">
+                    <svg class="check_mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M18.3327 10.0001C18.3327 5.39771 14.6017 1.66675 9.99935 1.66675C5.39697 1.66675 1.66602 5.39771 1.66602 10.0001C1.66602 14.6024 5.39697 18.3334 9.99935 18.3334C14.6017 18.3334 18.3327 14.6024 18.3327 10.0001Z" fill="#78A97C" stroke="white" stroke-width="0.833333"/>
+                    <path d="M6.66602 10L9.16602 12.5L13.3327 7.5" stroke="white" stroke-width="0.833333" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg class="uncheck_mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M18.3327 10.0001C18.3327 5.39771 14.6017 1.66675 9.99935 1.66675C5.39697 1.66675 1.66602 5.39771 1.66602 10.0001C1.66602 14.6024 5.39697 18.3334 9.99935 18.3334C14.6017 18.3334 18.3327 14.6024 18.3327 10.0001Z" stroke="#272727" stroke-opacity="0.1" stroke-width="0.833333"/>
+                    </svg>
+                </div>
+                <div class="subscription_title">
+                    <div class="sub_title_discount">
+                        <span class="sub__title">One Time Purchase</span>
+                    </div>
+                    <div class="sub_text">A single box with 4 seasonal designs</div>
+                </div>
+            </div>    
+        <div class="subscription_price">
+            <div class="sub_price">
+                <span class="sub_price_onetime">{{ product.selected_or_first_available_variant.price | money }}</span>
+            </div>
+            {% comment %} <div class="sub_price_per_design">
+                $2 / Design
+            </div> {% endcomment %}
+        </div>
+       </div> 
+    </label>
+</div>
+
+
+
+
+<style>
+
+    .subscription_base_top {
+    margin-top: 35px;
+}
+
+  .subscription_widget_title {
+    color: var(--Midnight, #272727);
+    font-family: "ivypresto-headline", serif;
+    font-size: 21px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: normal;
+    margin-bottom: 22px;
+}
+.subscription_widget_01  .sw_01_subscription.subscription_base {
+    position: relative;
+}
+.subscription_widget_01  .seller_badge {
+    display: inline;
+    padding: 4px 8px;
+    align-items: center;
+    background: var(--Midnight, #272727);
+    color: var(--Classic-White, #FFF);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+    position: absolute;
+    right: 10px;
+    top: -23px;
+}
+.subscription_widget_01  input[type="radio"][name="subscription_widget_01"]{
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.subscription_widget_01  label.sw_01_subscription {
+    border: 1px solid rgba(39, 39, 39, 0.10);
+    display: block;
+    cursor: pointer;
+}
+.subscription_widget_01  .check_mark{
+display: none;
+}
+.subscription_widget_01  .subscription_head {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+}
+.subscription_widget_01  .subscription_head_inner {
+    display: flex;
+    gap: 8px;
+}
+.subscription_widget_01  .sub__title {
+    color: var(--MIDNIGHT, #272727);
+    font-family: ivypresto-headline, serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: normal;
+}
+.subscription_widget_01  .sub__discount {
+    display: inline-flex;
+    padding: 4px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: var(--Red, #A50034);
+    color: var(--Classic-White, #FFF);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+}
+.subscription_widget_01  .sub_title_discount {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+.subscription_widget_01  .sub_text {
+    color: var(--MIDNIGHT, #272727);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.subscription_widget_01  .sub_price_regular {
+    color: rgba(39, 39, 39, 0.50);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: line-through;
+}
+.subscription_widget_01  .sub_price_sale {
+    color: var(--Red, #A50034);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-right: 6px;
+}
+.subscription_widget_01  .sub_price_per_design {
+    color: var(--MIDNIGHT, #272727);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.5;
+        margin-top: 4px;
+}
+.subscription_widget_01  .subscription_body {
+    background: #F7F6F5;
+    padding: 12px;
+}
+.subscription_widget_01  span.tick_icon {
+    display: flex;
+}
+.subscription_widget_01  .subscription_text_item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.subscription_widget_01  .subscription_text_item:not(:last-child) {
+    margin-bottom: 12px;
+}
+.subscription_widget_01  span.tick_text {
+    color: #272727;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18.2px;
+}
+.subscription_widget_01  .subscription_or {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin: 12px 0;
+}
+.subscription_widget_01  .subscription_or::before,
+    .subscription_widget_01  .subscription_or::after {
+        content: '';
+        flex-grow: 1;
+        border-top: 1px solid #ccc;
+    }
+        
+ .subscription_widget_01   .subscription_or span {
+    margin: 0 10px;
+    color: rgba(39, 39, 39, 0.80);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+}
+.subscription_widget_01  .sub_price_onetime {
+    color: var(--MIDNIGHT, #272727);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: block;
+    text-align: right;
+}
+
+
+.subscription_widget_01  input[type="radio"][name="subscription_widget_01"]:checked + label.sw_01_subscription{
+  border: 1px solid #272727;
+}
+.subscription_widget_01  input[type="radio"][name="subscription_widget_01"]:checked + label.sw_01_subscription .uncheck_mark {
+    display: none;
+}
+.subscription_widget_01  input[type="radio"][name="subscription_widget_01"]:checked + label.sw_01_subscription .check_mark {
+    display: block;
+}
+
+
+@media(max-width:600px){
+.subscription_widget_01  .sub__discount {
+    position: absolute;
+    top: -23px;
+    right: 84px;
+}
+.subscription_widget_01  .sub__title {font-size: 16px;}
+.subscription_widget_01  .sub_text {font-size: 12px;}
+.subscription_widget_01  .subscription_head_inner {gap: 4px;}
+.subscription_widget_01  .subscription_head {padding: 8px;}
+.subscription_widget_01  .sub_price_per_design, .subscription_widget_01  span.tick_text { font-size: 12px;}
+.subscription_widget_01  .subscription_body {padding: 8px;}
+.subscription_widget_01  .subscription_text_item:not(:last-child) { margin-bottom: 8px;}
+.subscription_widget_01  .subscription_or span {font-size: 10px;}
+.subscription_widget_title {margin-bottom: 34px;}
+
+
+
+}
+
+
+</style>
+{% endif %}
+
+<script>
+(function () {
+  function init() {
+    const forms = document.querySelectorAll('.product_form_id');
+    if (!forms.length) return;
+
+    function updateSellingPlan(value) {
+      forms.forEach(form => {
+        let input = form.querySelector('input[name="selling_plan"]');
+
+        // One-time purchase
+        if (value === 'one_time') {
+          if (input) input.remove();
+          return;
+        }
+
+        // Subscription
+        if (!input) {
+          input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = 'selling_plan';
+          form.appendChild(input);
+        }
+
+        input.value = value;
+      });
+    }
+
+    // Initial state
+    const checked = document.querySelector(
+      'input[name="subscription_widget_01"]:checked'
+    );
+    if (checked) updateSellingPlan(checked.value);
+
+    // Event delegation for radio changes
+    document.addEventListener('change', e => {
+      if (e.target.matches('input[name="subscription_widget_01"]')) {
+        updateSellingPlan(e.target.value);
+      }
+    });
+
+    // Validation
+    forms.forEach(form => {
+      form.addEventListener('submit', e => {
+        const selected = document.querySelector(
+          'input[name="subscription_widget_01"]:checked'
+        );
+
+        if (!selected) {
+          e.preventDefault();
+          alert('Please select a purchase option.');
+          return;
+        }
+
+        if (
+          selected.value !== 'one_time' &&
+          !form.querySelector('input[name="selling_plan"]')
+        ) {
+          e.preventDefault();
+          alert('Subscription plan missing.');
+        }
+      });
+    });
+  }
+
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', init)
+    : init();
+})();
+</script>
+
+
